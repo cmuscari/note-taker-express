@@ -10,12 +10,13 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 // parse incoming json data
 app.use(express.json());
+// add middleware to automatically route the css & js files associated with the routed HTML file
+app.use(express.static('public'));
 // if client navigates to endpoint '/api', then the app will use the router we set up in apiRoutes
 app.use('/api', apiRoutes);
 // if client navigates to to '/' endpoint, then the router will serve back to our html routes
 app.use('/', htmlRoutes);
-// add middleware to automatically route the css & js files associated with the routed HTML file
-app.use(express.static('public'));
+
 
 
 
